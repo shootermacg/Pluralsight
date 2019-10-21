@@ -1,0 +1,30 @@
+---------------------
+Tag Helpers
+---------------------
+info) Tag helpers are a replacement for HTML helpers:
+eg) @Html.TextBoxFor(x => x.Name) = <input asp-for="Name" />
+
+info) Tag helpers enhance or replace html elements
+
+
+<label asp-for="Zipcode"></label>
+<div>
+	<input asp-for="zipcode" />
+	<span asp-validation-for="zipcode"></span>
+</div>
+
+Tag helpers can be split into two chategories:
+----------------------------------------------
+1) Utility Tag Helpers: 
+- General purpose helpers that can be used accross the application.
+- building links, caching etc
+- Examples: Anchor, Image, Caching, Environemnt tag helpers
+
+asp-page="feedback" is the same as href="/feedback"
+
+
+2)Form Tag Helpers:
+- Used exclusively when building forms.
+- Examples: Form, Input, Validation, Label tag helpers
+
+

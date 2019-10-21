@@ -1,0 +1,48 @@
+---------------------
+1) Displaying Data:
+---------------------
+<p>@Model.Sum</p>
+<p>@DateTime.Now</p>
+
+info) Razor uses the "@" to transition from Html to HTML.
+info) Usually we will be using the model, set at the top of the page with:
+	@model ModelName
+
+More at:
+- https://www.learnrazorpages.com
+- https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.0 
+- https://www.w3schools.com/asp/razor_syntax.asp
+
+---------------------
+2) Code blocks:
+---------------------
+@{
+	var sum = 1 + 1;
+}
+
+<div>
+	@if(today == "Monday") {
+		<p>Monday is today.<p>
+	}
+</div>
+<div>
+	@foreach(var product in products) {
+		<p>@product.Name</p>
+	}
+</div>
+
+---------------------
+3) Intelligent Markup
+----------------------
+<input asp-for-"zipcode" type="text" />
+
+---------------------
+4) Keyword Features:
+---------------------
+@section Footer {
+	<p>HTML content goes here</p>
+}
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

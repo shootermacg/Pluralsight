@@ -1,0 +1,14 @@
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\bin\Debug\netcoreapp2.0\appsettings.Development.json
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\bin\Debug\netcoreapp2.0\appsettings.json
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\bin\Debug\netcoreapp2.0\bundleconfig.json
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\bin\Debug\netcoreapp2.0\Properties\launchSettings.json
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\bin\Debug\netcoreapp2.0\WiredBrainCoffee.deps.json
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\bin\Debug\netcoreapp2.0\WiredBrainCoffee.runtimeconfig.json
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\bin\Debug\netcoreapp2.0\WiredBrainCoffee.runtimeconfig.dev.json
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\bin\Debug\netcoreapp2.0\WiredBrainCoffee.dll
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\bin\Debug\netcoreapp2.0\WiredBrainCoffee.pdb
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\obj\Debug\netcoreapp2.0\WiredBrainCoffee.csprojAssemblyReference.cache
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\obj\Debug\netcoreapp2.0\WiredBrainCoffee.AssemblyInfoInputs.cache
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\obj\Debug\netcoreapp2.0\WiredBrainCoffee.AssemblyInfo.cs
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\obj\Debug\netcoreapp2.0\WiredBrainCoffee.dll
+F:\Dev\Pluralsight\Razor Pages in ASP.NET Core\Project\RazorPages-master\RazorPages-master\WiredBrainCoffee\obj\Debug\netcoreapp2.0\WiredBrainCoffee.pdb
