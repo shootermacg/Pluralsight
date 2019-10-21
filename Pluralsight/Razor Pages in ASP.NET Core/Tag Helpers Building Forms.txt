@@ -1,0 +1,48 @@
+info) Razor binds form key/value pairs to objects in the PageModel. This means we don't need to manually parse the form key collections.
+Tag Helper                              Rendered HTML
+------------------------------------------------------------------
+<input asp-for="FirstName"/>            <input Name="FirstName"/>
+Nested:
+<select asp-for="Rating"                <select Name="Rating">
+asp-options="RatingChoices">                <option>Poor</option>
+                                            <option>Good</option>
+                                        </select>
+
+
+1) asp-for="PropertyName"
+Binds the control to the Page PropertyName
+eg:
+<label asp-for="Contact.Phone">Phone Number:</label>
+<input asp-for="Contact.Phone" class="form-control">
+
+2) <form asp-page="Contact" method="post">
+Tells the form to post to a page called Contact
+
+Model Binding
+-------------------
+Maps incoming form data to c# properties.
+Request data types: url values, form encoded values, json
+
+[BindProperty]
+public Contact Contact { get; set; }
+info) this tells the model binding system to map form key value pairs to the Contact model.
+
+Alternative to the BindPropery attribute: 
+The following will work fine:
+- void OnGet(int id)
+- void OnPost(Contact contact)
+
+Where does the model binding system pull binding data?
+Model Binding Data Sources:
+- url
+- Route Data
+- HTTP Headers
+- Request BindProperty
+- Files
+- Custom
+
+Other Binding attributes:
+--------------------------
+1) [BindRequired] - required value for incoming data to be considered valid
+2) [BindNever] - dont bind
+3) void OnPost([FromQuery] Contact contact) -specify that the Contact data is in the URL string, nowhere else.
