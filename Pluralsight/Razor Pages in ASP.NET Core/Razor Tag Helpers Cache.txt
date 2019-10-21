@@ -1,0 +1,11 @@
+If you want to cache any markup just put ti between <cache></cache> tages:
+
+Cache attributes:
+-----------------------
+1) expires-after 
+- <cache expires-after="TimeSpan.FromSeconds(10)" > value will be cached for 10 seconds
+2) expires-on
+3) expires-sliding
+4) vary-by-query
+- if we have a query parameter called time (http://localhost/?time=1) then the cache will refresh when the time variable changes from 1.
+
