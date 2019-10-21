@@ -1,0 +1,15 @@
+If you have multiple forms on your page, you can define page handler methods.
+
+<form asp-page-handler="Subscribe">
+    <input asp-for="address" />
+
+in the code behind use:
+
+You always need to use the OnPost prefix before your post handler name 'Subscribe'
+void OnPostSubscribe(string address)
+{
+    //do something
+}
+
+http://localhost:49301/Contact?handler=Subscribe
+
