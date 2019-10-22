@@ -1,0 +1,12 @@
+Razor Routes
+----------------
+1) Changing the perceived Page Link:
+--------------------------------------------
+- Just say I want to add a custom route to a page called Feedback.
+- I would add the route next to the @page directive
+@page "/thoughts"
+- The page link doesn't need to change@
+<a class="nav-link" asp-page="Feedback">Feedback</a>
+
+- But if I click on the link the url will be: 
+- localhost/thoughts instead of localhost/feedback

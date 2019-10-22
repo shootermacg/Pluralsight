@@ -1,0 +1,26 @@
+Model Validation
+--------------------------
+Place these attributes on your model properties / sub properties:
+- [Required]
+- [Phone]
+- [EmailAddress]
+- [MinLength(25)]
+
+Checking if form is valid:
+    void OnPost(Contact contact)
+    {
+        if(ModelState.IsValid){
+            //true
+        }
+    }
+
+The ModelState is available in the markup, so validation is easy.
+
+Two types of Validation:
+1) Model Validation (more complex)
+eg) Property or Model Tag Helper:  
+    <div asp-validation-summary="All"></div>
+
+2) Property Validation (validating individual properties)
+eg) Property Tag Helper
+    <span asp-validation-for="Name"></span>]
