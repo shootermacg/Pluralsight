@@ -1,0 +1,34 @@
+---------------------
+Tag Helpers
+---------------------
+info) Tag helpers are a replacement for HTML helpers:
+eg) @Html.TextBoxFor(x => x.Name) = <input asp-for="Name" />
+
+info) Tag helpers enhance or replace html elements
+
+
+<label asp-for="Zipcode"></label>
+<div>
+	<input asp-for="zipcode" />
+	<span asp-validation-for="zipcode"></span>
+</div>
+
+Tag helpers can be split into two chategories:
+----------------------------------------------
+1) Utility Tag Helpers: 
+- General purpose helpers that can be used accross the application.
+- building links, caching etc
+- Examples: Anchor, Image, Caching, Environemnt tag helpers
+
+asp-page="feedback" is the same as href="/feedback"
+
+<a asp-page="Item" asp-route-slug="@item.Slug" class="btn btn">Details & Nutrition</a>
+***) asp-route-slug is dynamic, I can change it to any word I like the parameter top be called ie: asp-route-camelsAreGreat and it will look to pass a param called
+camelsAreGreat to the link target. 
+
+
+2)Form Tag Helpers:
+- Used exclusively when building forms.
+- Examples: Form, Input, Validation, Label tag helpers
+
+

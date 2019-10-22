@@ -1,0 +1,23 @@
+*) Razor Pages use an MVVM approach
+
+1) One File Approach
+info) you can have both your markup and your code in a single file
+
+2) Two file approach
+info) you need the following directives:
+
+@page - delcares the file as a razor page to .net core
+@model IndexModel - tells .net core what the page model is for this template
+
+3) The Model class inherits from the PageModel class.
+The model class comes with an OnGet method for when this page is requested.
+This is usually a good place to initialize data etc
+
+
+Declaring properties in the code-behind will make them visibile to the markup through the model.
+
+@foreach (var item in Model.Menu)
+{
+	<p>@item.Name</p>
+}
+

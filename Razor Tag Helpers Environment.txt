@@ -1,0 +1,18 @@
+Where would you use this Tag Helper?
+- Just say you wanted to use the full bootstrap files for dev but the minified files for production.
+1) Add the markup:
+
+<environment include="Development">
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/bootstrap.js"></script>
+</environment>
+<environment include="Production">
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+</environment>
+
+2) To Test Open launchSettings.json in the Properties folder and change:
+"ASPNETCORE_ENVIRONMENT": "Development" to "Production" for both IIS and Kestral profiles
+
+
+
