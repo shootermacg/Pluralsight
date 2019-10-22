@@ -1,1 +1,80 @@
-test
+1) ACTIONRESULTS
+================================================
+
+Action Results: Components that generate different responses for a page.
+Generally they are just wrappers for writing content to the HTTP Response Object
+eg) JsonResult -----> Http Response Object ------> 
+
+HTTP/1.1 200 OK                     //set status code
+Content-Type: application/Json      //set headers
+{                                   //set body
+    "firstName":"John",
+    "lastName", "Doe"
+}
+
+
+Usage):
+
+PageResult - Just renders the page back to the browser.
+public IActionResult OnPost()
+{
+    return new PageResult();
+}
+
+Action Result Example Workflow:
+-----------------------------------
+
+localhost/admin/edit/23     --------------------------> [does the item exist?]---Yes--->[Should the user have access?]--Yes--> [Return PageActionResult 200 ]
+                                                                    | No                                |No
+                                                                    |                                   |
+                                                        [Return not found ActionResult 404]         [return Unauthorized ActionResult 401]
+
+
+ActionResult types:
+------------------------
+- RedirectToPageResult: 301 redirect to another page 
+usage) [RedirectToPageResult("Contacts", "Subscribe")] will redirect to Contacts and call OnGetSibscribe()
+- ContentResult: simple string of content
+- JsonResult: Json formatted data
+- Many more: status codes, different conmtent formats etc
+
+Action Result Helper Methods
+-------------------------------
+The PageModel base class has methods that return different ActionResults
+- return Page() pretty much just a return statement for methods that return IActionResult
+- return NotFound()
+- return Unauthorized()
+- many more!
+
+
+2) UNDERSTANDING ROUTING CONVENTIONS
+========================================================
+How routing works
+-------------------
+When the app starts .NET analyses the our project page structure and custom template configurations
+
+info) Routing is implemented as >NET core middleware.
+Purpose of Routing:
+1) Route incoming requests to the right Razor Page
+2) Create links and URLs that point to the right places.
+
+Conventions - this is howw mvc core automatically maps things
+eg)if you have a page in the pages folder called test.cshtml, then localhost/test will bring you there.
+eg)if you have a page in a sub menu (admin) of the the pages folder called test.cshtml, then localhost/admin/test will bring you there.
+
+Custom Route Templates: 
+Can be declared next to the page directive.
+The templates can include static segments, variables and constraints.
+
+eg) static: @page "/menu-item/somename"
+eg) Using a variable called name: @page "/menu-item/{name}"
+
+Application Routing configurations
+------------------------------------
+info)Wired and Home urls will map to Index, Features will be the root directory
+services.AddMvc().AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AddPageRoute("/Index", "wired");
+                options.Conventions.AddPageRoute("/Index", "home");
+                options.RootDirectory = "/Features";
+            });
