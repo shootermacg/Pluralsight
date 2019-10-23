@@ -1,0 +1,11 @@
+1) Open the ViewImports.cshtml file. This file allows us to manage our resources across all of out template views.
+2) add this line to the file:
+    @addTagHelper *, WiredBrainCoffee
+info)   @addTagHelper takes 2 arguments, the name of the item we're trying to import and the second is the dll it lives in. 
+        * is a wildcard to tell it everything i the dll.
+3) May as well add more refs to stop us having to fully qualify model refs in our views, so also add some other dirs:
+4) add @using WiredBrainCoffee.Models
+5) we can then just call: <vc:popular-brews count="1" /> instead of <partial name="MobileWidget" model="@("Download our App")"/>.
+
+
+

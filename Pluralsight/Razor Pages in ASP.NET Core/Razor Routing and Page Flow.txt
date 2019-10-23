@@ -76,5 +76,66 @@ services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.Conventions.AddPageRoute("/Index", "wired");
                 options.Conventions.AddPageRoute("/Index", "home");
-                options.RootDirectory = "/Features";
+                //options.RootDirectory = "/Features";
             });
+
+
+Route constraints
+---------------------
+what are they?) Apply rules to determine whether the content of a URL matches a route.
+They enforce constraints based on datatype:
+- /menu-item/{name:alpha} Means that only letters can be used, not numbers. So /menu-item/mocha will be fine, but menu-item/23 wouldn't.
+
+"thoughts/{token:alpha:minlength(5)}" constraints say, only letters and 5 or more.
+
+
+Route Constraints:
+----------------------
+- double
+- minLength(n)
+- datetime
+- guid
+- many more!
+
+
+
+Custom Route Constraints:
+----------------------------
+1) Need to Extend IRouteConstraint interface.
+The Match method determines if a URL segment is correct:
+
+public class PromoConstraint : IRouteConstraint{
+    //check for 3 letters and 3 numbers who's sium is divisible by 3 123abc, abc333
+    public bool Match(  HttpContext httpContext, 
+                            IRouter route, 
+                            string routeKey, 
+                            RouteValueDictionary values, 
+                            RouteDirection routeDirection)
+        {
+            var letterCount = 0;
+            var numCount = 0;
+            var sum = 0;
+
+            //say we have a parameter called "token"
+            foreach(var unit in values["token"].ToString())
+            {
+                letterCount += Char.IsLetter(unit) ? 1 : 0;
+                numCount += char.IsDigit(unit) ? 1 : 0;
+                sum += char.IsDigit(unit) ? int.Parse(unit.ToString()) : 0;
+            }
+
+            return letterCount == 3 && numCount == 3 && sum % 3 == 0;
+        }
+}
+
+2) Next, we need go to Startup.cs and register the MyRouteConstraint class in the ConfigureServices method:
+
+services.Configure<RouteOptions>(options =>
+            {
+                options.ConstraintMap.Add("promo", typeof(PromoConstraint));
+            });
+
+3) add the new constraint to our page:
+
+@page "thoughts/{token:promo}"
+

@@ -1,0 +1,50 @@
+*)This is done in the ConfigureServices method of Startup.cs class
+Top level Component Interfaces will usually be passed to classes using constructor injection, but the mapping will be done in the ConfigureServices method.
+So basically: lower level components are saying "I depend on an interface and I assume an implementation will be supplied when i am created"
+
+def) Container: Provide the instances (concrete classes) of registered dependencies (interfaces)
+Benefits of DI) Loose coupling, improved testing, lifetime management.
+It's good practise to pass any services you need into the PageModels using constructor injection.
+
+Adding IoC implementation to startup.cs:
+
+    public void ConfigureServices(IServiceCollection services)
+    {
+        //here's the mapping to the interface.
+        services.AddScoped<IMenuService, MenuService>();
+    }
+
+AddScoped - Means just fire up a new instance for every http query
+
+You can then supply the interfaces to the constructors of pages and ViewComponents
+
+
+Accessing Existing Services using DI
+-------------------------------------------
+services.AddLogging();
+- this will initialize behind the scenes certain classes with our dependency resolver.
+example)
+public class MenuModel : PageModel
+    {
+        private IMenuService _menuService;
+        private ILogger<MenuModel> _logger;
+
+        public MenuModel(IMenuService menuService, ILogger<MenuModel> logger)
+        {
+            _menuService = menuService;
+            _logger = logger;
+        }
+        public List<MenuItem> Menu { get; set; }
+        public void OnGet()
+        {
+            try
+            {
+                Menu = _menuService.GetMenuItems();
+                throw new Exception();
+            }
+            catch(Exception e)
+            {
+                _logger.Log(LogLevel.Debug, "Could not get menu");
+            }
+        }
+    }

@@ -1,0 +1,18 @@
+Razor provides Sections to allow dynamic sections on the _Layout file.
+These sections can then be overridden by the different pages rendered inside the layout.
+
+Example:
+//_Layout page:
+
+@if(IsSectionDefined("Footer")){
+    RenderSection("Footer");
+}
+else{
+    <p>some stuff for the footer in the layout page</p>
+}
+
+
+//Razor content page:
+@section Footer{
+    <p>Whatever you want unique to this specific page footer</p>
+}
