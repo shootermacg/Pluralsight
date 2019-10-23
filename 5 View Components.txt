@@ -1,0 +1,68 @@
+Notes:
+-----------------
+Elegant way to reuse logic driven sections.
+Independent sections that allow us to use partial views with their own class.
+They support dependency injection and access to framework context objects.
+Can be rendered inside Pages and Layouts.
+Can be invoked with or without models.
+
+Creating a ViewModel
+------------------------------------------------------------------------
+0)  At the top level make the ViewComponent PopularBrews.cs
+    Class has to inherit from ViewComponent:
+    eg:
+
+    public class PopularBrews : ViewComponent
+    {
+        public async Task<IViewComponentResult> InvokeAsync(int count)
+        {
+            var menu = new MenuService();
+            return View(menu.GetMenuItems().Take(count));
+        }
+    }
+
+
+1) Add a Components directory inside the pages directory.
+2) Add a directory with the name of the component .
+3) Add a View inside of it.
+eg) Pages/Components/MenuWidget/Default.cshtml
+
+4) Add the markup you want:
+
+@Model IEnumerable<WiredBrainCoffee.Models.MenuItem>
+<div class="card">
+    <div class="card-body">
+        <h2 class="card-title">Popular Brews</h2>
+        @foreach (var item in Model)
+        {
+        <div>
+            <span class="card-text text-success">@item.Name</span>@item.Summary
+        </div>
+       }
+    </div>
+    <div class="card-footer">
+        <a href="#" class="btn btn-success">Full Menu</a>
+    </div>
+</div>
+
+
+How to call ViewComponent in markup:
+
+@await Component.InvokeAsync("PopularBrews", new {count = 2})
+
+------------------------------------------------------------------------------------------
+
+Differences between ViewComponents and Razor pages.
+-----------------------------------------------------------
+1)
+ViewComponent - small data driven content sections
+Razor Page - Render full application page.
+2)
+ViewComponent - Only accessible internally
+Razor Page - Handle incoming HTTP requests
+3)
+ViewComponent - Child view
+Razor Page - Parent View
+4)
+ViewComponent - Multiple per URL
+Razor Page -  One per URL

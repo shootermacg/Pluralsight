@@ -1,0 +1,60 @@
+Middleware
+---------------
+Def) The series of components that form the application level request pipeline.
+    These middleware components are responsible for:
+    - Handling incoming requests
+    - Manageing application level services
+    - Creating the HTTP response either directly or indirectly with the help of a framework like MVC.
+
+Features Provided by Middleware:
+----------------------------------
+- Routing
+- Session
+- Logging
+- Autentication
+- Caching
+
+Registering: 
+------------------------------------
+This is done in the Configure method of Startup.cs class.
+*) Middleware components are executes in the order that they are registered, so order is important.
+*) You can have a middleware pipeline both on the Request and the response.
+*) For each Request: a middleware component decides itself, whether to perform work, 
+to pass the request on, or to create a response itself not allowing the request to the next middleware.
+
+Example:
+-----------
+                Middleware-1:                     Middleware-2:                                Middleware-3:            App Framework                                                     
+Request---> [Authenticate Request] (Valid) ---> [Serve static files] (file not requested) --->[Routing] (found page)-->[MVC & Razor Pages]---|
+                                                                                                                                             |
+                                                                                                                                             |
+<-------[Authenticate Request] <--- [Serve static files] (file not requested) <---[Routing] (found page)<--[MVC & Razor Pages]   <---Response|
+
+Example Usage:
+Say you wanted to be able to check if the site was Alive. You dont want to go through the entire middleware stack to a page and have create
+a page to send a response.
+You could just add middleware first on the stack to send the alive back.
+
+Creating your own keep-alive middleware.
+----------------------------------------------
+// Add this code to the very top Configure method
+// It gets the context, along with a callback method
+// then it checks that the url has the word alive in it.
+// If so it makes it's own response and sends it back.
+// if the url doesn't have the word alive in it, then it calls the next delegate to pass it on to the next middleware.. 
+
+    app.Use(async (context, next) =>
+    {
+        //check that the request url contains the work alive
+        if(context.Request.Path.Value.Contains("alive"))
+        {
+            await context.Response.WriteAsync("The app is alive");
+        }
+        else
+        {
+            //if not pass the request onto the next middleware in the pipeline.
+            Debug.WriteLine("Before Razor Page");
+            await next.Invoke();
+            Debug.WriteLine("After Razor Page");
+        }
+    });

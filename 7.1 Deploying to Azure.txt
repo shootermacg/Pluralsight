@@ -1,0 +1,29 @@
+What do you need?
+1) An asure subscription
+2) Have selected a hosting plan
+3) Build a Resource Group (container to hold related applications)
+4) Create Application Service (Hosts and contains our production code)
+5) Deploy from Visual Studio
+
+Hosting and Deployment Project Files
+---------------------------------------
+Both are found in the properties.
+
+1) Publishing Profile (VS creates this automatically) you'll see a file ending in Profile.pubxml
+----------------------------
+Configures publishing and deployment location settings. Where to deploy, what resources to deploy.
+
+2) launchSettings.Json 
+----------------------------
+Configures environment and web server specific settings (called profiles) Development vs Production.
+
+Razor Pages core Hosting Options
+--------------------------------
+IIS and others
+
+
+
+
+
+
+

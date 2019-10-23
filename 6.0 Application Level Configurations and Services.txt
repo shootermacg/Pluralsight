@@ -1,0 +1,4 @@
+3 types worth looking at:
+1) Dependency Injection: configure & manage app services
+2) Middleware: Configure & manage the request pipeline
+3) Deployment: Host the app with the right con figurations.
